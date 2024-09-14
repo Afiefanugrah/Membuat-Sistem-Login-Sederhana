@@ -4,13 +4,14 @@
   "description": "* npm init\r * npm i nodemon --save-dev",
   "main": "index.js",
   "scripts": {
-    "api":  "nodemon server.js"
+    "api": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.21.0"
+    "express": "^4.21.0",
+    "fs": "^0.0.1-security"
   },
   "devDependencies": {
     "nodemon": "^3.1.4"
