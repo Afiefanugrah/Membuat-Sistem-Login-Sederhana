@@ -1,3 +1,4 @@
+const { error } = require('console')
 const express = require('express')
 const fs = require('fs')
 const FilePath = './users.json'
@@ -20,14 +21,14 @@ const writeUsersToFile = (users) => {
 };
 
 
-app.get('/', function (req, res) {
+app.get('/', async (req, res) => {
     res.json({
         data: "halo",
         metadata: "halaman awal"
     })
 })
 
-app.post('/register', function (req, res) {
+app.post('/register', async (req, res) => {
     const {username, password} = req.body;
     let users = readUsersFromFile();
     const newUser = {username, password}
@@ -38,5 +39,23 @@ app.post('/register', function (req, res) {
         metadata: "add user success"
     })
 })
+
+app.post('/login', async (req, res) => {
+    const {username, password} = req.body
+    let users = readUsersFromFile()
+    const user = users.find(user => user.username === username && user.password === password)
+    if(user) {
+        res.status(200).json({
+            data: user,
+            metadata: "login success"
+        })
+    } else {
+        res.status(401).json({
+            error: "data invalid"
+        })
+        res
+    }
+})
+
 
 app.listen(port, () => {console.log(`Server running on port ${port}`)});
