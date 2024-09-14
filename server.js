@@ -30,11 +30,13 @@ app.get('/', function (req, res) {
 app.post('/register', function (req, res) {
     const {username, password} = req.body;
     let users = readUsersFromFile();
-    users.push({username, password});
+    const newUser = {username, password}
+    users.push(newUser);
     writeUsersToFile(users);
-    res.status(201).send('User added and saved successfully');
-
-    
+    res.status(201).json({
+        data: newUser,
+        metadata: "add user success"
+    })
 })
 
 app.listen(port, () => {console.log(`Server running on port ${port}`)});
