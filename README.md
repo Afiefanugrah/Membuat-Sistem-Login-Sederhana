@@ -1,4 +1,8 @@
-# Membuat-Sistem-Login-Sederhana
+# Membuat Sistem Login Sederhana
 
-* npm init
-* npm i nodemon --save-dev
+depensi yang di pakai
+
+- express
+- nodemon
+
+cara run aplikasi `npm run api`

@@ -1,5 +1,6 @@
 const { error } = require('console')
 const express = require('express')
+const byrcyt = require('bcrypt')
 const fs = require('fs')
 const FilePath = './users.json'
 const port = 3200
@@ -22,16 +23,18 @@ const writeUsersToFile = (users) => {
 
 
 app.get('/', async (req, res) => {
+    let users = readUsersFromFile();
     res.json({
-        data: "halo",
+        data: users,
         metadata: "halaman awal"
     })
 })
 
 app.post('/register', async (req, res) => {
     const {username, password} = req.body;
+    const byrcyt = await byrcyt.hash(password, 10)
     let users = readUsersFromFile();
-    const newUser = {username, password}
+    const newUser = {username, password: byrcyt}
     users.push(newUser);
     writeUsersToFile(users);
     res.status(201).json({
