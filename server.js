@@ -47,17 +47,22 @@ app.post('/login', async (req, res) => {
     const {username, password} = req.body
     let users = readUsersFromFile()
     const user = users.find(user => user.username === username )
-    const compere = await byrcyt.compare(password, user.password)
-    if(compere === true) {
-        res.status(200).json({
-            data: user,
-            metadata: "login success"
-        })
+    if(user) {
+        const compere = await byrcyt.compare(password, user.password)
+        if(compere === true) {
+            res.status(200).json({
+                data: user,
+                metadata: "login success"
+            })
+        } else {
+            res.status(401).json({
+                error: "data invalid"
+            })
+        }
     } else {
         res.status(401).json({
             error: "data invalid"
         })
-        res
     }
 })
 
