@@ -32,9 +32,9 @@ app.get('/', async (req, res) => {
 
 app.post('/register', async (req, res) => {
     const {username, password} = req.body;
-    const byrcyt = await byrcyt.hash(password, 10)
+    const Byrcyt = await byrcyt.hash(password, 10)
     let users = readUsersFromFile();
-    const newUser = {username, password: byrcyt}
+    const newUser = {username, password: Byrcyt}
     users.push(newUser);
     writeUsersToFile(users);
     res.status(201).json({
@@ -46,8 +46,9 @@ app.post('/register', async (req, res) => {
 app.post('/login', async (req, res) => {
     const {username, password} = req.body
     let users = readUsersFromFile()
-    const user = users.find(user => user.username === username && user.password === password)
-    if(user) {
+    const user = users.find(user => user.username === username )
+    const compere = await byrcyt.compare(password, user.password)
+    if(compere === true) {
         res.status(200).json({
             data: user,
             metadata: "login success"

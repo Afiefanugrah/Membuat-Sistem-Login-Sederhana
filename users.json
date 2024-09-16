@@ -10,5 +10,13 @@
   {
     "username": "paki",
     "password": "123"
+  },
+  {
+    "username": "haki",
+    "password": "$2b$10$HruJfTJgNM6rSXvEJV1cq.lBm2XzJrvJUpd4qhCbwyvDZ7WFzd4ES"
+  },
+  {
+    "username": "alpi",
+    "password": "$2b$10$uCCZSK32b84R8P90x6z./OcBm3.tOTCmy2haQ0H4TWjZXl2RlAemi"
   }
 ]
