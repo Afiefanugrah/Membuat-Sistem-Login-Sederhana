@@ -1,4 +1,3 @@
-const { error } = require('console')
 const express = require('express')
 const byrcyt = require('bcrypt')
 const fs = require('fs')
